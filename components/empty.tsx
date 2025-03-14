@@ -4,7 +4,7 @@ import { Button } from "./ui/button";
 interface EmptyStateProps {
     message: string;
     buttonTxt: string;
-    onButtonClick: () => void;
+    onButtonClick: () => null;
 }
 
 export default function EmptyComponent ({message, buttonTxt, onButtonClick} : EmptyStateProps){

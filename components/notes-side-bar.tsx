@@ -10,12 +10,14 @@ import EmptyComponent from "./empty";
 import { Button } from "./ui/button";
 import { Minus, Trash } from "lucide-react";
 import { formatDate } from "@/lib/storeg";
+import { Note } from "@/lib/type";
 
 interface sidebarProps {
     notes: Note[];
+    onSelectNote:(el: Note) => void;
 }
 
-export default function SideBar({notes} : sidebarProps) {;
+export default function SideBar({notes, onSelectNote} : sidebarProps) {;
     return (
         <Card>
             <CardHeader>
@@ -23,12 +25,14 @@ export default function SideBar({notes} : sidebarProps) {;
             </CardHeader>
             <CardContent>
                 {notes.length === 0 ? (
-                    <EmptyComponent message="Note is Empty bro" buttonTxt="Create new list" />
+                    <EmptyComponent onButtonClick={()=>{return null}} message="Note is Empty bro" buttonTxt="Create new list" />
                 ) : (
                     <div>
                         {notes.map((el) => {
                             return (
-                                <div key={el.id} className="p-3 rounded-md cursor-pointer hover:bg-accent transition-colors">
+                                <div onClick={() => onSelectNote(el)} 
+                                     key={el.id} 
+                                     className="p-3 rounded-md cursor-pointer hover:bg-accent transition-colors">
                                     
                                     <div className="flex justify-between items-center">
                                         <h2 className="note__title font-medium">
